@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root {
+    --transition-duration: 0.0s;
+    font-family: Inter, sans-serif;
+    font-feature-settings: "liga" 1, "calt" 1;
+    background-color: #f9f9f9;
+}
+@supports (font-variation-settings: normal) {
+    :root {
+        font-family: InterVariable, sans-serif;
+    }
+} */
+body {
+    font-family: "Space Grotesk", serif;
+}
+
+html.theme-transition,
+html.theme-transition * {
+    transition: all var(--transition-duration) ease-in-out;
+}
