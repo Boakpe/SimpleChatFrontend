@@ -20,7 +20,7 @@ function App() {
                     <div
                         className={
                             "flex flex-col h-screen w-full min-h-screen" +
-                            (sidebarOpen ? " ml-80" : " ml-14")
+                            (sidebarOpen ? " ml-80" : " ml-16")
                         }
                     >
                         <Header />

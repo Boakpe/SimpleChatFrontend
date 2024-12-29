@@ -36,7 +36,7 @@ const ChatInput = ({ onSendMessage, isLoading }) => {
     };
 
     return (
-        <div className="border border-neutral-600 flex flex-col rounded2-t-2xl dark:border-neutral-800 border-b-0">
+        <div className="border border-neutral-600 flex flex-col rounded2-t-2xl dark:border-neutral-600 border-b-0">
             <textarea
                 ref={textareaRef}
                 className="rounded2-t-2xl resize-none p-4 outline-none dark:bg-neutral-800 dark:text-white bg-white overflow-y-auto"

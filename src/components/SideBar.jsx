@@ -1,4 +1,4 @@
-import { PanelLeft, Plus, MessageSquare } from "lucide-react";
+import { PanelLeft, Plus, MessageSquare, History } from "lucide-react";
 import { getConversations } from "../services/fastapi";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
@@ -27,7 +27,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }) => {
         >
             <div className="flex flex-col h-full">
                 {/* Header */}
-                <div className="p-4 flex items-center justify-between border-b border-neutral-600 dark:border-neutral-600 h-16">
+                <div className={"p-4 flex items-center border-b border-neutral-600 dark:border-neutral-600 h-16" + (sidebarOpen ? " justify-between" : " justify-center")}>
                     <button 
                         onClick={() => setSidebarOpen(!sidebarOpen)}
                         className="p-2 border border-neutral-600 hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-none"
@@ -35,7 +35,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }) => {
                         <PanelLeft
                             className="text-neutral-600 dark:text-neutral-300"
                             size={20}
-                            strokeWidth={1.5}
+                            strokeWidth={2}
                         />
                     </button>
                     {sidebarOpen && (
@@ -47,7 +47,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }) => {
 
                 {/* New Chat Button */}
                 <NavLink 
-                    to="/"
+                    to="/new"
                     className={({ isActive }) =>
                         `mx-4 mt-4 flex items-center gap-3 p-2 border border-neutral-600 rounded-none ${
                             isActive 
@@ -56,7 +56,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }) => {
                         }`
                     }
                 >
-                    <Plus size={18} strokeWidth={1.5} />
+                    <Plus size={18} strokeWidth={2} />
                     {sidebarOpen && <span className="font-medium uppercase">New Chat</span>}
                 </NavLink>
 
@@ -74,7 +74,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }) => {
                                 }`
                             }
                         >
-                            <MessageSquare size={18} strokeWidth={1.5} />
+                            <MessageSquare size={18} strokeWidth={2} />
                             {sidebarOpen && (
                                 <div className="flex-1 min-w-0 ">
                                     <div className="truncate text-sm font-medium uppercase">
@@ -88,6 +88,20 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }) => {
                         </NavLink>
                     ))}
                 </div>
+                {/* View All History Button */}
+                <NavLink 
+                    to="/history"
+                    className={({ isActive }) =>
+                        `p-4 flex items-center gap-3 border-t border-neutral-600 rounded-none  ${
+                            isActive 
+                                ? "bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:text-white" 
+                                : "text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800"
+                        }` + (sidebarOpen ? " justify-start" : " justify-center") 
+                    }
+                >
+                    <History size={18} strokeWidth={2} />
+                    {sidebarOpen && <span className="font-medium uppercase">View All</span>}
+                </NavLink>
             </div>
         </aside>
     );

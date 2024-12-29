@@ -30,10 +30,18 @@ export const useChat = (chatId) => {
     }, [chatId]);
 
     const handleSendMessage = async (userInput) => {
+        if (!chatId) {
+            const newChatId = await createConversation("New Chat", 0);
+            console.log("COMPONENT: useChat.js -- newChatId: ", newChatId);
+            chatId = newChatId.id;
+        }
+
         const userMessage = { role: "user", content: userInput };
+
         setMessages((prev) => [...prev, userMessage]);
 
         // Store user message in backend
+        console.log("COMPONENT: useChat.js -- chatId: ", chatId);
         await createMessage(userInput, "user", chatId);
 
         const aiMessage = { role: "assistant", content: "" };

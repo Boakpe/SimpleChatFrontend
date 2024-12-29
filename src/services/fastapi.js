@@ -6,6 +6,7 @@ export const createMessage = async (content, role, conversation_id) => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Origin': 'http://localhost:3000'
           },
           body: JSON.stringify({
             content,
@@ -25,9 +26,12 @@ export const createMessage = async (content, role, conversation_id) => {
 
 export const getMessages = async (conversation_id) => {
     try {
-        const response = await fetch(`${BASE_URL}/messages/conversation/${conversation_id}`);
+        const response = await fetch(`${BASE_URL}/messages/conversation/${conversation_id}`, {
+            headers: {
+                'Origin': 'http://localhost:3000'
+            }
+        });
         const data = await response.json();
-        // Just send the "role" and "content" fields
         if (!data) {
             return [];
         }
@@ -44,7 +48,11 @@ export const getConversations = async (user_id, limit) => {
         if (!limit) {
             limit = 10;
         }
-        const response = await fetch(`${BASE_URL}/conversations/user/${user_id}?limit=${limit}`);
+        const response = await fetch(`${BASE_URL}/conversations/user/${user_id}?limit=${limit}`, {
+            headers: {
+                'Origin': 'http://localhost:3000'
+            }
+        });
         const data = await response.json();
         return data;
     }
@@ -56,7 +64,11 @@ export const getConversations = async (user_id, limit) => {
 
 export const getNextId = async () => {
     try {
-        const response = await fetch(`${BASE_URL}/conversations/next-id`);
+        const response = await fetch(`${BASE_URL}/conversations/next-id`, {
+            headers: {
+                'Origin': 'http://localhost:3000'
+            }
+        });
         const data = await response.json();
         return data.next_id;
     }
@@ -72,6 +84,7 @@ export const createConversation = async (title, user_id) => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Origin': 'http://localhost:3000'
           },
           body: JSON.stringify({
             title,
