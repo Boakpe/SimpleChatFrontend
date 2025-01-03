@@ -5,6 +5,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 import SideBar from "./components/SideBar";
 import ChatPage from "./pages/ChatPage";
 import NewChatPage from "./pages/NewChatPage";
+import History from "./pages/History";
 
 function App() {
     const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -29,8 +30,9 @@ function App() {
                             <Route path="/new" element={<NewChatPage />} />
                             <Route
                                 path="/chat/:chatId"
-                                element={<ChatPage/>}
+                                element={<ChatPage />}
                             />
+                            <Route path="/history" element={<History />} />
                         </Routes>
                     </div>
                 </div>

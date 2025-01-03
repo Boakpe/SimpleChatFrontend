@@ -1,10 +1,11 @@
 import { PanelLeft, Plus, MessageSquare, History } from "lucide-react";
 import { getConversations } from "../services/fastapi";
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const SideBar = ({ sidebarOpen, setSidebarOpen }) => {
     const [conversations, setConversations] = useState([]);
+    const location = useLocation();
 
     const fetchConversations = async () => {
         try {
@@ -17,7 +18,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }) => {
 
     useEffect(() => {
         fetchConversations();
-    }, []);
+    }, [location]);
 
     return (
         <aside
