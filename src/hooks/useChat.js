@@ -36,7 +36,7 @@ export const useChat = (chatId) => {
         let currentChatId = chatId;
         
         if (!currentChatId) {
-            const newChat = await createConversation("New Chat", 0);
+            const newChat = await createConversation(userInput, 0);
             currentChatId = newChat.id;
         }
     

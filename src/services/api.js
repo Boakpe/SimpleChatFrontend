@@ -1,19 +1,14 @@
 // src/services/api.js
-const BASE_URL = 'http://localhost:1234/v1';
+const BASE_URL = 'http://127.0.0.1:1515';
 
 export const sendMessage = async (messages, onUpdate) => {
   try {
-    const response = await fetch(`${BASE_URL}/chat/completions`, {
+    const response = await fetch(`${BASE_URL}/chat`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        messages,
-        model: 'anything',
-        temperature: 0.5,
-        stream: true,
-      }),
+      body: JSON.stringify({ messages }),
     });
 
     const reader = response.body.getReader();
@@ -35,14 +30,22 @@ export const sendMessage = async (messages, onUpdate) => {
         if (!line) continue;
         
         const message = line.replace(/^data: /, '');
-        if (message === '[DONE]') {
-          console.log('Stream complete');
-          break;
-        };
+        
 
         try {
-          const parsedMessage = JSON.parse(message);
+          /* const parsedMessage = JSON.parse(message);
           const content = parsedMessage.choices?.[0]?.delta?.content || '';
+          accumulatedContent += content; */
+          console.log('Message:', message);
+
+          const parsedMessage = JSON.parse(message);
+          const content = parsedMessage.content || '';
+
+          if (content === '[DONE]') {
+            console.log('Stream complete');
+            break;
+          };
+
           accumulatedContent += content;
           onUpdate(accumulatedContent);
         } catch (error) {
