@@ -100,3 +100,30 @@ export const createConversation = async (title, user_id) => {
         throw error;
     }
 }
+
+export const createMessageReaction = async (chat_id, message, reaction, report_type = null, details = null) => {
+    try {
+        const response = await fetch(`${BASE_URL}/reactions/`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Origin': 'http://localhost:3000'
+          },
+          body: JSON.stringify({
+            chat_id,
+            message,
+            reaction,
+            ...(report_type && { report_type }),
+            ...(details && { details })
+          }),
+        });
+
+        const data = await response.json();
+        console.log(data);
+        return data;
+    }
+    catch (error) {
+        console.error('Error:', error);
+        throw error;
+    }
+}

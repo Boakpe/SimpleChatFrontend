@@ -1,4 +1,3 @@
-// src/components/ChatInput.jsx
 import React, { useState, useRef, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 

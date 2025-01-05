@@ -67,12 +67,16 @@ export const useChat = (chatId) => {
             });
     
             // Store the AI answer
-            await createMessage(finalAiContent, "assistant", currentChatId);
+            const ai_answer = await createMessage(finalAiContent, "assistant", currentChatId);
+            console.log("AI Answer: ", ai_answer);
+            
             
             // Navigate only after streaming is complete
             if (!chatId) {
                 navigate(`/chat/${currentChatId}`);
             }
+
+            return ai_answer;
         } catch (error) {
             console.error("Failed to send message:", error);
             setMessages((prev) => {

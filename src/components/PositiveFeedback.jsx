@@ -1,11 +1,20 @@
-import React from 'react'
+import React from "react";
+import FeedbackModal from "./FeedbackModal";
 
-const PositiveFeedback = () => {
-  return (
-    <div className='fixed border-neutral-600 bg-neutral-100 dark:bg-neutral-900 dark:text-neutral-100 text-neutral-900 p-4 rounded2-2xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40'>
-        <p>PositiveFeedback</p>
-    </div>
-  )
-}
+const PositiveFeedback = ({ setShowPositiveFeedback, chatId, message, setPositiveFeedback }) => {
+    return (
+        <FeedbackModal
+            onClose={() => setShowPositiveFeedback(false)}
+            chatId={chatId}
+            message={message}
+            onSubmit={() => {
+                setShowPositiveFeedback(false);
+                setPositiveFeedback(true);
+            }}
+            feedbackType="positive"
+            showTypeSelect={false}
+        />
+    );
+};
 
-export default PositiveFeedback
+export default PositiveFeedback;
