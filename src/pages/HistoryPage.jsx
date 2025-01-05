@@ -22,6 +22,7 @@ const History = () => {
     return (
         <main className="flex flex-1 bg-neutral-50 dark:bg-neutral-900 relative">
             <div className="h-full overflow-y-auto p-4 space-y-2 w-[920px] mx-auto ">
+                
                 <div className="mt-4 flex-1 overflow-y-auto">
                     {conversations.map((conversation) => (
                         <NavLink
