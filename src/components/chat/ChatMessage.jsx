@@ -1,17 +1,8 @@
 import React from "react";
-import { User, Bot } from "lucide-react";
 import { useParams } from "react-router-dom";
+import { MessageAvatar } from "../ui/MessageAvatar";
+import { MessageContent } from "./MessageContent";
 import MessageFeedback from "../ui/MessageFeedback";
-
-const MessageAvatar = ({ isUser }) => (
-    <div className="flex-shrink-0">
-        {isUser ? (
-            <User className="text-neutral-600 dark:text-neutral-100" size={24} />
-        ) : (
-            <Bot className="text-neutral-600 dark:text-neutral-100" size={24} />
-        )}
-    </div>
-);
 
 const ChatMessage = ({ message }) => {
     const { chatId } = useParams();
@@ -25,8 +16,8 @@ const ChatMessage = ({ message }) => {
         <div className={messageClasses}>
             <div className="flex gap-4 p-4">
                 <MessageAvatar isUser={isUser} />
-                <div className="flex-grow whitespace-pre-wrap dark:text-neutral-100 text-sm">
-                    {message.content}
+                <div className="flex-grow dark:text-neutral-100 text-sm">
+                    <MessageContent content={message.content} />
                 </div>
             </div>
 
