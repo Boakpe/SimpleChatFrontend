@@ -1,11 +1,11 @@
 // src/hooks/useChat.js
 import { useState, useEffect } from "react";
-import { sendMessage } from "../services/api";
+import { sendMessage } from "../services/api/llm";
 import {
     getMessages,
     createMessage,
     createConversation,
-} from "../services/fastapi";
+} from "../services/api/backend";
 import { useNavigate } from "react-router-dom"; // Add this import
 
 

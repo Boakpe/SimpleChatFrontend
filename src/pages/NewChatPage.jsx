@@ -1,4 +1,4 @@
-import MainContent from "../components/MainContent";
+import MainContent from "../components/chat/MainContent";
 import { useChat } from "../hooks/useChat";
 
 function NewChatPage() {

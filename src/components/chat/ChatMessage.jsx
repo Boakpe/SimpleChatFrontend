@@ -1,7 +1,7 @@
 import React from "react";
 import { User, Bot } from "lucide-react";
 import { useParams } from "react-router-dom";
-import MessageFeedback from "./MessageFeedback";
+import MessageFeedback from "../ui/MessageFeedback";
 
 const MessageAvatar = ({ isUser }) => (
     <div className="flex-shrink-0">

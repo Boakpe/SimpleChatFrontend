@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Header from "./components/Header";
-import { ThemeProvider } from "./context/ThemeContext";
-import SideBar from "./components/SideBar";
+import Header from "./components/layout/Header";
+import { ThemeProvider } from "./contexts/ThemeContext";
+import SideBar from "./components/layout/SideBar";
 import ChatPage from "./pages/ChatPage";
 import NewChatPage from "./pages/NewChatPage";
-import History from "./pages/History";
+import HistoryPage from "./pages/HistoryPage";
 
 function App() {
     const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -32,7 +32,7 @@ function App() {
                                 path="/chat/:chatId"
                                 element={<ChatPage />}
                             />
-                            <Route path="/history" element={<History />} />
+                            <Route path="/history" element={<HistoryPage />} />
                         </Routes>
                     </div>
                 </div>

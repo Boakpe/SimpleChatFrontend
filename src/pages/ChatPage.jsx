@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import MainContent from "../components/MainContent";
+import MainContent from "../components/chat/MainContent";
 import { useChat } from "../hooks/useChat";
 
 function ChatPage({new_chat}) {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createMessageReaction } from "../services/fastapi";
+import { createMessageReaction } from "../../services/api/backend";
 
 const FeedbackModal = ({ onClose, chatId, message, onSubmit, feedbackType, showTypeSelect }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);

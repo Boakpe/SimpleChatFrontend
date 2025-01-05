@@ -1,5 +1,5 @@
 import { Sun, Moon } from "lucide-react";
-import { useTheme } from "../context/ThemeContext";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const ThemeSwitcher = () => {
     const { darkMode, setDarkMode } = useTheme();

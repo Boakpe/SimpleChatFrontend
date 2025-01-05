@@ -1,5 +1,5 @@
 import { PanelLeft, Plus, MessageSquare, History } from "lucide-react";
-import { getConversations } from "../services/fastapi";
+import { getConversations } from "../../services/api/backend";
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 

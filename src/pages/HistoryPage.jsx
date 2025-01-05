@@ -1,4 +1,4 @@
-import { getConversations } from "../services/fastapi";
+import { getConversations } from "../services/api/backend";
 import { MessageSquare } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
