@@ -9,6 +9,7 @@ const Messages = ({ messages }) => {
             chatContainerRef.current.scrollTop =
                 chatContainerRef.current.scrollHeight;
         }
+        console.log("messages", messages);
     }, [messages]);
 
     return (
