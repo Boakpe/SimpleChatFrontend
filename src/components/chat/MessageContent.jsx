@@ -11,8 +11,8 @@ export const MessageContent = ({ content }) => {
                 part.type === 'artifact' ? (
                     <Artifact key={index} {...part.data} />
                 ) : (
-                    <span key={index} className=" whitespace-pre-wrap">
-                        {part.content}
+                    <span key={index} className="whitespace-pre-wrap">
+                        {part.content.trim()}
                     </span>
                 )
             ))}

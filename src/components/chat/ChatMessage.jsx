@@ -3,29 +3,41 @@ import { useParams } from "react-router-dom";
 import { MessageAvatar } from "../ui/MessageAvatar";
 import { MessageContent } from "./MessageContent";
 import MessageFeedback from "../ui/MessageFeedback";
+import LoadingAgent from "../ui/LoadingAgent";
 
 const ChatMessage = ({ message }) => {
     const { chatId } = useParams();
     const isUser = message.role === "user";
 
     const messageClasses = `flex flex-col border border-neutral-600 ${
-        isUser ? "bg-neutral-100 dark:bg-neutral-900" : "bg-white dark:bg-neutral-800"
+        isUser
+            ? "bg-neutral-100 dark:bg-neutral-900"
+            : "bg-white dark:bg-neutral-800"
     }`;
+
+    const contentEndsWithAgentCall = message.content
+        .trim()
+        .endsWith("[AGENT_CALL]");
+    const displayedContent = message.content.replace("[AGENT_CALL]", "");
 
     return (
         <div className={messageClasses}>
             <div className="flex gap-4 p-4">
                 <MessageAvatar isUser={isUser} />
                 <div className="flex-grow dark:text-neutral-100 text-sm">
-                    <MessageContent content={message.content} />
+                    {contentEndsWithAgentCall ? (
+                        <>
+                            <MessageContent content={displayedContent} />
+                            <LoadingAgent />
+                        </>
+                    ) : (
+                        <MessageContent content={displayedContent} />
+                    )}
                 </div>
             </div>
 
             {!isUser && (
-                <MessageFeedback 
-                    chatId={chatId}
-                    message={message.content}
-                />
+                <MessageFeedback chatId={chatId} message={displayedContent} />
             )}
         </div>
     );

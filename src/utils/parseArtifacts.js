@@ -1,7 +1,7 @@
 export const parseArtifacts = (text) => {
     const parts = [];
     let currentIndex = 0;
-    const artifactRegex = /::artifact\s*({[^}]+})\s*::/g;
+    const artifactRegex = /<artifact>\s*([\s\S]*?)\s*<\/artifact>/g;
     let match;
 
     while ((match = artifactRegex.exec(text)) !== null) {
