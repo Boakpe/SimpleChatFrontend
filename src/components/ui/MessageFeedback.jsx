@@ -15,7 +15,7 @@ const MessageFeedback = ({ chatId, message }) => {
 
     return (
         <div className="w-48 my-2">
-            <div className="border border-neutral-600 bg-white dark:bg-neutral-900">
+            <div className="border border-neutral-600 bg-white dark:bg-neutral-900 px-1">
                 <div className="flex items-center gap-2 justify-between">
                     <div className="flex items-center gap-1 p-2">
                         <div className="w-2 h-2 bg-neutral-600 dark:bg-neutral-400" />
