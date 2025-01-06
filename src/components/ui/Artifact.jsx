@@ -18,7 +18,7 @@ const Artifact = ({ title, identifier, type, url }) => {
 
   return (
     <div className={`group ${getWidth()}`}>
-      <div className="border border-neutral-600 bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-50 dark:hover:bg-neutral-800 my-4">
+      <div className="border border-neutral-600 bg-neutral-100 dark:bg-neutral-900  my-4">
         <div className="p-2 px-4 border-b border-neutral-600 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-neutral-600 dark:bg-neutral-400 rounded-full" />

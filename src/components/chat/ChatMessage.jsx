@@ -21,21 +21,22 @@ const ChatMessage = ({ message }) => {
     const displayedContent = message.content.replace("[AGENT_CALL]", "");
 
     return (
-        <div className={messageClasses}>
-            <div className="flex gap-4 p-4">
-                <MessageAvatar isUser={isUser} />
-                <div className="flex-grow dark:text-neutral-100 text-sm">
-                    {contentEndsWithAgentCall ? (
-                        <>
+        <div>
+            <div className={messageClasses}>
+                <div className="flex gap-4 p-4">
+                    <MessageAvatar isUser={isUser} />
+                    <div className="flex-grow dark:text-neutral-100 text-sm">
+                        {contentEndsWithAgentCall ? (
+                            <>
+                                <MessageContent content={displayedContent} />
+                                <LoadingAgent />
+                            </>
+                        ) : (
                             <MessageContent content={displayedContent} />
-                            <LoadingAgent />
-                        </>
-                    ) : (
-                        <MessageContent content={displayedContent} />
-                    )}
+                        )}
+                    </div>
                 </div>
             </div>
-
             {!isUser && (
                 <MessageFeedback chatId={chatId} message={displayedContent} />
             )}

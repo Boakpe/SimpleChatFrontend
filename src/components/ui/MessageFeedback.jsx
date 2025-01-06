@@ -11,49 +11,64 @@ const MessageFeedback = ({ chatId, message }) => {
         if (feedbackType) return;
         setFeedbackType(type);
         setShowFeedbackForm(true);
-        console.log(`${type} feedback received`);
     };
 
-    const buttonClass = (isActive) => 
-        `hover:bg-neutral-200 dark:hover:bg-neutral-700 p-2 ${
-            isActive ? "bg-neutral-200 dark:bg-neutral-700" : ""
-        }`;
-
     return (
-        <>
-            <div className="flex justify-end border-t border-neutral-600 p-x bg-stripes">
-                <button
-                    className={buttonClass(feedbackType === 'positive')}
-                    onClick={() => handleFeedback('positive')}
-                >
-                    <ThumbsUp className="text-neutral-600 dark:text-neutral-100" size={18} />
-                </button>
-                <button
-                    className={buttonClass(feedbackType === 'negative')}
-                    onClick={() => handleFeedback('negative')}
-                >
-                    <ThumbsDown className="text-neutral-600 dark:text-neutral-100" size={18} />
-                </button>
+        <div className="w-48 my-2">
+            <div className="border border-neutral-600 bg-white dark:bg-neutral-900">
+                <div className="flex items-center gap-2 justify-between">
+                    <div className="flex items-center gap-1 p-2">
+                        <div className="w-2 h-2 bg-neutral-600 dark:bg-neutral-400" />
+                        <span className="text-xs font-medium uppercase text-neutral-600 dark:text-neutral-400">
+                            Feedback
+                        </span>
+                    </div>
+
+                    <div className="flex gap-2 items-center p-2">
+                        <button
+                            className={`group flex items-center gap-2 ${
+                                feedbackType === "positive"
+                                    ? "text-green-600 dark:text-green-400"
+                                    : "text-neutral-600 dark:text-neutral-400"
+                            }`}
+                            onClick={() => handleFeedback("positive")}
+                            disabled={feedbackType !== null}
+                        >
+                            <ThumbsUp className="w-4 h-4 group-hover:text-green-600 dark:group-hover:text-green-400" />
+                        </button>
+                        <button
+                            className={`group flex items-center gap-2 ${
+                                feedbackType === "negative"
+                                    ? "text-red-600 dark:text-red-400"
+                                    : "text-neutral-600 dark:text-neutral-400"
+                            }`}
+                            onClick={() => handleFeedback("negative")}
+                            disabled={feedbackType !== null}
+                        >
+                            <ThumbsDown className="w-4 h-4 group-hover:text-red-600 dark:group-hover:text-red-400" />
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            {showFeedbackForm && feedbackType === 'negative' && (
+            {showFeedbackForm && feedbackType === "negative" && (
                 <NegativeFeedback
                     setShowNegativeFeedback={() => setShowFeedbackForm(false)}
                     chatId={chatId}
                     message={message}
-                    setNegativeFeedback={() => setFeedbackType('negative')}
+                    setNegativeFeedback={() => setFeedbackType("negative")}
                 />
             )}
 
-            {showFeedbackForm && feedbackType === 'positive' && (
+            {showFeedbackForm && feedbackType === "positive" && (
                 <PositiveFeedback
                     setShowPositiveFeedback={() => setShowFeedbackForm(false)}
                     chatId={chatId}
                     message={message}
-                    setPositiveFeedback={() => setFeedbackType('positive')}
+                    setPositiveFeedback={() => setFeedbackType("positive")}
                 />
             )}
-        </>
+        </div>
     );
 };
 
