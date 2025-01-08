@@ -1,12 +1,11 @@
 import React from "react";
 import FeedbackModal from "./FeedbackModal";
 
-const PositiveFeedback = ({ setShowPositiveFeedback, chatId, message, setPositiveFeedback }) => {
+const PositiveFeedback = ({ messageId, setShowPositiveFeedback, setPositiveFeedback }) => {
     return (
         <FeedbackModal
             onClose={() => setShowPositiveFeedback(false)}
-            chatId={chatId}
-            message={message}
+            messageId={messageId}
             onSubmit={() => {
                 setShowPositiveFeedback(false);
                 setPositiveFeedback(true);

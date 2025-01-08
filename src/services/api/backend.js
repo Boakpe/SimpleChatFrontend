@@ -35,7 +35,7 @@ export const getMessages = async (conversation_id) => {
         if (!data) {
             return [];
         }
-        return data.map(({ role, content }) => ({ role, content }));
+        return data
     }
     catch (error) {
         console.error('Error:', error);
@@ -101,25 +101,31 @@ export const createConversation = async (title, user_id) => {
     }
 }
 
-export const createMessageReaction = async (chat_id, message, reaction, report_type = null, details = null) => {
+export const createMessageFeedback = async (messageId, feedback_type, report_type = null, details = null) => {
     try {
-        const response = await fetch(`${BASE_URL}/reactions/`, {
+        console.log(messageId, feedback_type, report_type, details);
+        feedback_type = feedback_type.toUpperCase();
+        console.log(JSON.stringify({
+            messageId,
+            feedback_type,
+            ...(report_type && { report_type }),
+            ...(details && { details })
+          }));
+        const response = await fetch(`${BASE_URL}/feedbacks/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Origin': 'http://localhost:3000'
           },
           body: JSON.stringify({
-            chat_id,
-            message,
-            reaction,
+            message_id: messageId,
+            feedback_type,
             ...(report_type && { report_type }),
             ...(details && { details })
           }),
         });
 
         const data = await response.json();
-        console.log(data);
         return data;
     }
     catch (error) {

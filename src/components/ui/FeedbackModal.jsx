@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { createMessageReaction } from "../../services/api/backend";
+import { createMessageFeedback } from "../../services/api/backend";
 
-const FeedbackModal = ({ onClose, chatId, message, onSubmit, feedbackType, showTypeSelect }) => {
+const FeedbackModal = ({ onClose, messageId, onSubmit, feedbackType, showTypeSelect }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState({
         type: 'bug',
@@ -11,9 +11,8 @@ const FeedbackModal = ({ onClose, chatId, message, onSubmit, feedbackType, showT
     const handleSubmit = async () => {
         try {
             setIsSubmitting(true);
-            await createMessageReaction(
-                chatId,
-                message,
+            await createMessageFeedback(
+                messageId,
                 feedbackType,
                 formData.type,
                 formData.description

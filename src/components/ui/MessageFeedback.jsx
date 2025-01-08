@@ -3,7 +3,7 @@ import { ThumbsUp, ThumbsDown } from "lucide-react";
 import NegativeFeedback from "./NegativeFeedback";
 import PositiveFeedback from "./PositiveFeedback";
 
-const MessageFeedback = ({ chatId, message }) => {
+const MessageFeedback = ({ messageId, feedbackStatus }) => {
     const [feedbackType, setFeedbackType] = useState(null);
     const [showFeedbackForm, setShowFeedbackForm] = useState(false);
 
@@ -27,25 +27,25 @@ const MessageFeedback = ({ chatId, message }) => {
                     <div className="flex gap-2 items-center p-2">
                         <button
                             className={`group flex items-center gap-2 ${
-                                feedbackType === "positive"
+                                feedbackStatus === "positive"
                                     ? "text-green-600 dark:text-green-400"
                                     : "text-neutral-600 dark:text-neutral-400"
                             }`}
                             onClick={() => handleFeedback("positive")}
-                            disabled={feedbackType !== null}
+                            disabled={feedbackStatus !== null}
                         >
-                            <ThumbsUp className="w-4 h-4 group-hover:text-green-600 dark:group-hover:text-green-400" />
+                            <ThumbsUp className={"w-4 h-4 " + (feedbackStatus === null ? "group-hover:text-green-600 dark:group-hover:text-green-400" : "")} />
                         </button>
                         <button
                             className={`group flex items-center gap-2 ${
-                                feedbackType === "negative"
+                                feedbackStatus === "negative"
                                     ? "text-red-600 dark:text-red-400"
                                     : "text-neutral-600 dark:text-neutral-400"
                             }`}
                             onClick={() => handleFeedback("negative")}
-                            disabled={feedbackType !== null}
+                            disabled={feedbackStatus !== null}
                         >
-                            <ThumbsDown className="w-4 h-4 group-hover:text-red-600 dark:group-hover:text-red-400" />
+                            <ThumbsDown className={"w-4 h-4 " + (feedbackStatus === null ? "group-hover:text-red-600 dark:group-hover:text-red-400" : "")} />
                         </button>
                     </div>
                 </div>
@@ -53,18 +53,16 @@ const MessageFeedback = ({ chatId, message }) => {
 
             {showFeedbackForm && feedbackType === "negative" && (
                 <NegativeFeedback
+                    messageId={messageId}
                     setShowNegativeFeedback={() => setShowFeedbackForm(false)}
-                    chatId={chatId}
-                    message={message}
                     setNegativeFeedback={() => setFeedbackType("negative")}
                 />
             )}
 
             {showFeedbackForm && feedbackType === "positive" && (
                 <PositiveFeedback
+                    messageId={messageId}
                     setShowPositiveFeedback={() => setShowFeedbackForm(false)}
-                    chatId={chatId}
-                    message={message}
                     setPositiveFeedback={() => setFeedbackType("positive")}
                 />
             )}

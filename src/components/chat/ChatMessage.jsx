@@ -6,7 +6,6 @@ import MessageFeedback from "../ui/MessageFeedback";
 import LoadingAgent from "../ui/LoadingAgent";
 
 const ChatMessage = ({ message }) => {
-    const { chatId } = useParams();
     const isUser = message.role === "user";
 
     const messageClasses = `flex flex-col border border-neutral-600 ${
@@ -25,6 +24,7 @@ const ChatMessage = ({ message }) => {
             <div className={messageClasses}>
                 <div className="flex gap-4 p-4">
                     <MessageAvatar isUser={isUser} />
+                    {/* <h1>{message.id} - {message.feedback_status}</h1> */}
                     <div className="flex-grow dark:text-neutral-100 text-sm">
                         {contentEndsWithAgentCall ? (
                             <>
@@ -38,7 +38,7 @@ const ChatMessage = ({ message }) => {
                 </div>
             </div>
             {!isUser && (
-                <MessageFeedback chatId={chatId} message={displayedContent} />
+                <MessageFeedback messageId={message.id} feedbackStatus={message.feedback_status} />
             )}
         </div>
     );

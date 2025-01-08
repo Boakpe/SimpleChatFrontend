@@ -2,6 +2,9 @@
 const BASE_URL = 'http://127.0.0.1:1515';
 
 export const sendMessage = async (messages, onUpdate) => {
+  // Use only role and content from messages
+  messages = messages.map(({ role, content }) => ({ role, content }));
+
   try {
     const response = await fetch(`${BASE_URL}/chat`, {
       method: 'POST',
@@ -24,7 +27,6 @@ export const sendMessage = async (messages, onUpdate) => {
       const chunk = decoder.decode(value);
       const lines = chunk.split('\n');
 
-      //console.log('Received:', chunk);
 
       for (const line of lines) {
         if (!line) continue;
@@ -33,11 +35,6 @@ export const sendMessage = async (messages, onUpdate) => {
         
 
         try {
-          /* const parsedMessage = JSON.parse(message);
-          const content = parsedMessage.choices?.[0]?.delta?.content || '';
-          accumulatedContent += content; */
-          console.log('Message:', message);
-
           const parsedMessage = JSON.parse(message);
           const content = parsedMessage.content || '';
 
@@ -47,6 +44,7 @@ export const sendMessage = async (messages, onUpdate) => {
           };
 
           accumulatedContent += content;
+
           onUpdate(accumulatedContent);
         } catch (error) {
           console.error('Error parsing JSON:', error);

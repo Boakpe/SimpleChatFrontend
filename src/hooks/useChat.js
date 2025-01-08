@@ -12,12 +12,12 @@ import { useNavigate } from "react-router-dom"; // Add this import
 export const useChat = (chatId) => {
     const [isLoading, setIsLoading] = useState(false);
     const [messages, setMessages] = useState([]);
+    const [messageCount, setMessageCount] = useState(0);
     const navigate = useNavigate();
 
     const initializeChat = async () => {
         try {
             setIsLoading(true);
-            console.log("COMPONENT: useChat.js -- chatId: ", chatId);
             const msgs = await getMessages(chatId);
             setMessages(msgs);
         } catch (error) {
@@ -30,7 +30,7 @@ export const useChat = (chatId) => {
     useEffect(() => {
         if (!chatId) return;
         initializeChat();
-    }, [chatId]);
+    }, [messageCount, chatId]);
 
     const handleSendMessage = async (userInput) => {
         let currentChatId = chatId;
@@ -68,7 +68,7 @@ export const useChat = (chatId) => {
     
             // Store the AI answer
             const ai_answer = await createMessage(finalAiContent, "assistant", currentChatId);
-            console.log("AI Answer: ", ai_answer);
+            setMessageCount(messageCount + 1);
             
             
             // Navigate only after streaming is complete
