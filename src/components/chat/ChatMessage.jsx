@@ -5,9 +5,10 @@ import { MessageContent } from "./MessageContent";
 import MessageFeedback from "../ui/MessageFeedback";
 import LoadingAgent from "../ui/LoadingAgent";
 
+
 const ChatMessage = ({ message }) => {
     const isUser = message.role === "user";
-
+    const { chatId } = useParams();
     const messageClasses = `flex flex-col border border-neutral-600 ${
         isUser
             ? "bg-neutral-100 dark:bg-neutral-900"
@@ -38,7 +39,7 @@ const ChatMessage = ({ message }) => {
                 </div>
             </div>
             {!isUser && (
-                <MessageFeedback messageId={message.id} feedbackStatus={message.feedback_status} />
+                <MessageFeedback messageId={message.id} feedbackStatus={message.feedback_status} key={`feedback-${chatId}-${message.id}`} />
             )}
         </div>
     );

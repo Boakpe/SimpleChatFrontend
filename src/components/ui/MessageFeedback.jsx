@@ -1,17 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ThumbsUp, ThumbsDown } from "lucide-react";
 import NegativeFeedback from "./NegativeFeedback";
 import PositiveFeedback from "./PositiveFeedback";
+import { useParams } from "react-router-dom";
 
 const MessageFeedback = ({ messageId, feedbackStatus }) => {
     const [feedbackType, setFeedbackType] = useState(null);
     const [showFeedbackForm, setShowFeedbackForm] = useState(false);
 
+    const { chatId } = useParams();
+
     const handleFeedback = (type) => {
-        if (feedbackType) return;
+        console.log("Feedback type:", type);
+        //if (feedbackType) return;
         setFeedbackType(type);
         setShowFeedbackForm(true);
     };
+
+    useEffect(() => {
+        if (feedbackStatus) {
+            setFeedbackType(feedbackStatus);
+        }
+        console.log("Feedback status:", feedbackStatus);
+    }, [chatId, feedbackStatus]);
+
 
     return (
         <div className="w-48 my-2">
@@ -27,25 +39,25 @@ const MessageFeedback = ({ messageId, feedbackStatus }) => {
                     <div className="flex gap-2 items-center p-2">
                         <button
                             className={`group flex items-center gap-2 ${
-                                feedbackStatus === "positive"
+                                feedbackType === "positive"
                                     ? "text-green-600 dark:text-green-400"
                                     : "text-neutral-600 dark:text-neutral-400"
                             }`}
                             onClick={() => handleFeedback("positive")}
-                            disabled={feedbackStatus !== null}
+                            disabled={feedbackType !== null}
                         >
-                            <ThumbsUp className={"w-4 h-4 " + (feedbackStatus === null ? "group-hover:text-green-600 dark:group-hover:text-green-400" : "")} />
+                            <ThumbsUp className={"w-4 h-4 " + (feedbackType === null ? "group-hover:text-green-600 dark:group-hover:text-green-400" : "")} />
                         </button>
                         <button
                             className={`group flex items-center gap-2 ${
-                                feedbackStatus === "negative"
+                                feedbackType === "negative"
                                     ? "text-red-600 dark:text-red-400"
                                     : "text-neutral-600 dark:text-neutral-400"
                             }`}
                             onClick={() => handleFeedback("negative")}
-                            disabled={feedbackStatus !== null}
+                            disabled={feedbackType !== null}
                         >
-                            <ThumbsDown className={"w-4 h-4 " + (feedbackStatus === null ? "group-hover:text-red-600 dark:group-hover:text-red-400" : "")} />
+                            <ThumbsDown className={"w-4 h-4 " + (feedbackType === null ? "group-hover:text-red-600 dark:group-hover:text-red-400" : "")} />
                         </button>
                     </div>
                 </div>

@@ -17,6 +17,7 @@ const FeedbackModal = ({ onClose, messageId, onSubmit, feedbackType, showTypeSel
                 formData.type,
                 formData.description
             );
+            console.log("Feedback submitted", feedbackType);
             onSubmit();
         } catch (error) {
             console.error('Error submitting feedback:', error);
