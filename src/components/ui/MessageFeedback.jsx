@@ -46,7 +46,7 @@ const MessageFeedback = ({ messageId, feedbackStatus }) => {
                             onClick={() => handleFeedback("positive")}
                             disabled={feedbackType !== null}
                         >
-                            <ThumbsUp className={"w-4 h-4 " + (feedbackType === null ? "group-hover:text-green-600 dark:group-hover:text-green-400" : "")} />
+                            <ThumbsUp className={"w-4 h-4 transition-colors " + (feedbackType === null ? "group-hover:text-green-600 dark:group-hover:text-green-400" : "")} />
                         </button>
                         <button
                             className={`group flex items-center gap-2 ${
@@ -57,7 +57,7 @@ const MessageFeedback = ({ messageId, feedbackStatus }) => {
                             onClick={() => handleFeedback("negative")}
                             disabled={feedbackType !== null}
                         >
-                            <ThumbsDown className={"w-4 h-4 " + (feedbackType === null ? "group-hover:text-red-600 dark:group-hover:text-red-400" : "")} />
+                            <ThumbsDown className={"w-4 h-4 transition-colors " + (feedbackType === null ? "group-hover:text-red-600 dark:group-hover:text-red-400" : "")} />
                         </button>
                     </div>
                 </div>

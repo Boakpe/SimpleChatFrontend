@@ -17,8 +17,8 @@ const Artifact = ({ title, identifier, type, url }) => {
   };
 
   return (
-    <div className={`group ${getWidth()}`}>
-      <div className="border border-neutral-600 bg-neutral-100 dark:bg-neutral-900  my-4">
+    <div onClick={handleClick} className={`group  ${getWidth()}`}>
+      <div  className="border border-neutral-600 bg-neutral-100 dark:bg-neutral-900 group-hover:bg-neutral-50 dark:group-hover:bg-neutral-800  my-4 hover:cursor-pointer transition-colors">
         <div className="p-2 px-4 border-b border-neutral-600 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-neutral-600 dark:bg-neutral-400 rounded-full" />
@@ -31,7 +31,7 @@ const Artifact = ({ title, identifier, type, url }) => {
           </code>
         </div>
 
-        <a onClick={handleClick} href={url} className="block p-2 px-4 group-hover:bg-neutral-50 dark:group-hover:bg-neutral-800">
+        <a  href={url} className="block p-2 px-4 group-hover:bg-neutral-50 dark:group-hover:bg-neutral-800 transition-colors">
           <h3 className="font-medium text-neutral-900 dark:text-white mb-2">
             {title}
           </h3>

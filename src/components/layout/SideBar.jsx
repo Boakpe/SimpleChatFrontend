@@ -22,7 +22,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }) => {
 
     return (
         <aside
-            className={`fixed h-screen bg-neutral-100 dark:bg-neutral-900 border-r border-neutral-600 z-10 ${
+            className={`fixed h-screen bg-neutral-100 dark:bg-neutral-900 border-r border-neutral-600 z-10 transition-[width] duration-300 ${
                 sidebarOpen ? "w-80" : "w-16"
             }`}
         >

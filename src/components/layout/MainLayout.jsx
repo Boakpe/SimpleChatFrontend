@@ -15,11 +15,14 @@ function MainLayout() {
             />
             <div
                 className={
-                    "flex flex-col h-screen w-full min-h-screen" +
+                    "flex flex-col h-screen w-full min-h-screen mt-16 transition-[margin-left] duration-300" +
                     (sidebarOpen ? " ml-80" : " ml-16")
                 }
             >
-                <Header />
+                <Header
+                    sidebarOpen={sidebarOpen}
+                    setSidebarOpen={setSidebarOpen}
+                />
                 <Outlet /> {/* This is where child routes will be rendered */}
             </div>
         </div>

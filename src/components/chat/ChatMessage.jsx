@@ -18,7 +18,7 @@ const ChatMessage = ({ message }) => {
     const contentEndsWithAgentCall = message.content
         .trim()
         .endsWith("[AGENT_CALL]");
-    const displayedContent = message.content.replace("[AGENT_CALL]", "");
+    const displayedContent = message.content.replace(/\[AGENT_CALL\]$/, "");
 
     return (
         <div>

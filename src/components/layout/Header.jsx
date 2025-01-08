@@ -1,8 +1,8 @@
 import ThemeSwitcher from '../ui/ThemeSwitcher';
 
-const Header = () => {
+const Header = ({ sidebarOpen, setSidebarOpen }) => {
     return (
-        <header className="p-4 border-b border-neutral-600 bg-neutral-100 min-h-[64px] h-[64px] flex-shrink-0 sticky z-10 top-0 dark:bg-neutral-900">
+        <header className={"p-4 border-b border-neutral-600 bg-neutral-100 min-h-[64px] h-[64px] flex-shrink-0 z-10 top-0 dark:bg-neutral-900 fixed transition-[width] duration-300 " + (sidebarOpen ? " w-[calc(100%-320px)]" : " w-[calc(100%-64px)]")}>
             <div className="max-w-[1024px] mx-auto flex justify-between items-center">
                 <h1 className="text-xl font-semibold text-neutral-900 dark:text-white flex items-center gap-1">
                     IMA CHAT
