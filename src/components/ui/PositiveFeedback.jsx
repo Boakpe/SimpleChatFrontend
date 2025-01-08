@@ -1,14 +1,17 @@
 import React from "react";
 import FeedbackModal from "./FeedbackModal";
 
-const PositiveFeedback = ({ messageId, setShowPositiveFeedback, setPositiveFeedback }) => {
+const PositiveFeedback = ({ messageId, setShowPositiveFeedback, setFeedbackType }) => {
     return (
         <FeedbackModal
-            onClose={() => setShowPositiveFeedback(false)}
+            onClose={() => {
+                setShowPositiveFeedback(false);
+                setFeedbackType(null);
+            }}
             messageId={messageId}
             onSubmit={() => {
                 setShowPositiveFeedback(false);
-                setPositiveFeedback(true);
+                setFeedbackType("positive");
             }}
             feedbackType="positive"
             showTypeSelect={false}

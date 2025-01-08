@@ -55,7 +55,7 @@ const MessageFeedback = ({ messageId, feedbackStatus }) => {
                 <NegativeFeedback
                     messageId={messageId}
                     setShowNegativeFeedback={() => setShowFeedbackForm(false)}
-                    setNegativeFeedback={() => setFeedbackType("negative")}
+                    setFeedbackType={setFeedbackType}
                 />
             )}
 
@@ -63,7 +63,7 @@ const MessageFeedback = ({ messageId, feedbackStatus }) => {
                 <PositiveFeedback
                     messageId={messageId}
                     setShowPositiveFeedback={() => setShowFeedbackForm(false)}
-                    setPositiveFeedback={() => setFeedbackType("positive")}
+                    setFeedbackType={setFeedbackType}
                 />
             )}
         </div>
