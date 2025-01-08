@@ -7,13 +7,14 @@ import ChatPage from "./pages/ChatPage";
 import NewChatPage from "./pages/NewChatPage";
 import HistoryPage from "./pages/HistoryPage";
 import NotFoundPage from "./pages/NotFoundPage"; // Create this component
+import LandingPage from "./pages/LandingPage";
 
 function App() {
     return (
         <BrowserRouter>
             <ThemeProvider>
                 <Routes>
-                    <Route path="/" element={<Navigate to="/new" />} /> 
+                    <Route path="/" element={<LandingPage/>} /> 
                     
                     {/* Routes with MainLayout (Header and SideBar) */}
                     <Route element={<MainLayout />}>
